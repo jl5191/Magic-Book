@@ -4,37 +4,63 @@
       <div class="col-5">
         <p>2. Select a main catergory of your question</p>
         <select onchange={updateCategory}>
-            <option  value="">---</option>
-            <option refs="work" value="work">work</option>
+            <option value="">---</option>
+            <option value="work">work</option>
             <option value="love">Love</option>
             <option value="life">life</option>
         </select>
+
+
+
+      </div>
+
+
+
+      <div class="col-1"></div>
+      <div class="col-5">
+        <p>{ message1 }</p>
+      </div>
+      <div class="col-1"></div>
     </div>
-       <div class="col-1"></div>
-        <div class="col-4">
-        <p class="message1">{ message1 }</p>
-          </div>
-           <div class="col-2"></div>
-    </div>
+
 
 
   <div>
 
 <script>
-this.message1 = ""
-this.category = ""
+var that = this;
+this.message1 = "";
+this.category = "";
+
 
     updateCategory(){
-      this.category= event.target.value
-        if (this.category=="work"){
-          this.message1 = 'Now, mentally start to think about one question that is related to ' + this.category;
-  ;
-          } else if (this.value=="love"){
-              this.message1 = 'Now, mentally start to think about one question that is related to ' + this.category;
-                } else{
-                    this.message1 = 'Now, mentally start to think about one question that is related to ' + this.category;
-                    }
+      that.category= event.target.value
+        if (that.category=="work"){
+          that.message1 = 'Now, mentally start to think about one question that is related to ' + that.category;
+          var myArrayWork = ['Patience is the key.', 'Smart people know when to quit.', 'Negotiate with your boss.', 'Be willing to change.', 'Do not be afraid to fail.'];
+          var itemWork = myArrayWork[(Math.random()*myArrayWork.length)|0];
+          var itemAnswer = itemWork;
+        }
+        else if (that.category=="love"){
+          that.message1 = 'Now, mentally start to think about one question that is related to ' + that.category;
+          var myArrayLove = ['Unfortunately not.', 'Give it some time.', 'Probably yes.', 'Wait for three weeks', 'Make a fresh new start.'];
+          var itemLove = myArrayLove[(Math.random()*myArrayLove.length)|0];
+          var itemAnswer = itemLove;
+        }
+        else{
+          that.message1 = 'Now, mentally start to think about one question that is related to ' + that.category;
+          var myArrayLife = ['It comes and goes.', 'Be positive.', 'It is fine.', 'Talk to your friends.'];
+          var itemLife = myArrayLife[(Math.random()*myArrayLife.length)|0];
+          var itemAnswer = itemLife;
+        }
+
+        observer.trigger('answer', itemAnswer);
+
+
     }
+
+
+
 
 
 
